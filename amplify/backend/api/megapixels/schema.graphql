@@ -1,0 +1,224 @@
+type NotificationModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  metaData: String
+  date: AWSDateTime
+  isPublic: Boolean
+  user: String
+  message: String
+  isClickable: Boolean
+  clickedContent: String
+}
+
+type Upcoming @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  trailer: String
+  description: String
+  banner: String
+  streaming: Boolean
+}
+
+type QueryForm @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: String
+  tags: String
+  subject: String
+  message: String
+  contacts: String
+}
+
+type ContentTypeModel {
+  movie: Boolean
+  shows: Boolean
+  series: Boolean
+}
+
+type SliderOtpModel {
+  home: Boolean
+  movie: Boolean
+  shows: Boolean
+  series: Boolean
+}
+
+type GenreModel {
+  megapixelsOrignal: Boolean
+  eighteenPlus: Boolean
+  comdey: Boolean
+  bollywood: Boolean
+  hollywood: Boolean
+  action: Boolean
+  horror: Boolean
+  kids: Boolean
+  devotional: Boolean
+  bhojpuri: Boolean
+  regional: Boolean
+  documentary: Boolean
+  poetry: Boolean
+  political: Boolean
+  motivation: Boolean
+  drama: Boolean
+  tvshows: Boolean
+  romance: Boolean
+}
+
+type Episode @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  contentID: ID! @index(name: "byContent")
+  title: String
+  description: String
+  thumbnail: String
+  url: String
+  addedAt: AWSDateTime
+}
+
+type Content @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  type: ContentTypeModel
+  contentId: String
+  thumbnail: String
+  banner: String
+  tittle: String
+  description: String
+  addedAt: AWSDateTime
+  cost: Int
+  isFre: Boolean
+  trailer: String
+  url: String
+  Episodes: [Episode] @hasMany(indexName: "byContent", fields: ["id"])
+  tags: String
+  creatoraccountID: ID! @index(name: "byCreatorAccount")
+  genre: GenreModel
+  Approve: Boolean
+}
+
+type Subscribe @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  date: AWSDateTime
+  creatoraccountID: ID! @index(name: "byCreatorAccount")
+  usersID: ID! @index(name: "byUsers")
+}
+
+type CreatorAccount @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  icon: String
+  email: String
+  banner: String
+  Subscribers: [Users] @hasMany(indexName: "byCreatorAccount", fields: ["id"])
+  createrCode: String
+  registeredOn: String
+  Contents: [Users] @hasMany(indexName: "byCreatorAccount", fields: ["id"])
+  totalsale: Int
+  Approve: Boolean
+  demoContent: String
+  phone: String
+  ownerId: String
+  ownerName: String
+  doc: String
+  owners: [String]!
+}
+
+type Sliders @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  type: String
+  image: String
+  name: String
+  contentID: String
+  isClickable: Boolean
+  url: String
+  tags: SliderOtpModel
+}
+
+type Follow @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  time: AWSDateTime
+  follwing: AWSEmail
+  followedby: String
+}
+
+type Audition @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  applicationID: String
+  time: String
+  status: String
+  address: String
+  name: String
+  email: String
+  dob: String
+  idcard: String
+  video: String
+  phone: String
+  pfp: String
+  fatherspouse: String
+  gender: String
+  usersID: String
+}
+
+type OwnedContent @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  time: AWSDateTime
+  contentID: String
+  cost: String
+  usersID: ID! @index(name: "byUsers")
+}
+
+type LikesModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: String
+  username: String
+  oyeID: ID @index(name: "byOye")
+  Poster: String
+}
+
+type CommentModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  msg: String
+  pfp: String
+  likes: Int
+  username: String
+  email: AWSEmail
+  oyeID: ID @index(name: "byOye")
+  usersID: ID! @index(name: "byUsers")
+  time: AWSDateTime
+}
+
+type Users @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  coins: Int
+  email: AWSEmail
+  shows: [String]
+  banner: String
+  pfp: String
+  uid: String
+  phone: String
+  Oyes: [Oye] @hasMany(indexName: "byUsers", fields: ["id"])
+  OwnedContents: [OwnedContent] @hasMany(indexName: "byUsers", fields: ["id"])
+  CommentModels: [CommentModel] @hasMany(indexName: "byUsers", fields: ["id"])
+  totallikes: Int
+  postlimit: Int
+  Subscribed: [Subscribe] @hasMany(indexName: "byUsers", fields: ["id"])
+  creatoraccountID: ID @index(name: "byCreatorAccount")
+  verified: Boolean
+  karma: Int
+  refercode: String
+}
+
+type Oye @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  shares: Int
+  pfp: String
+  previewimage: String
+  time: AWSDateTime
+  videourl: String
+  email: AWSEmail
+  caption: String
+  usersID: ID! @index(name: "byUsers")
+  CommentModels: [CommentModel] @hasMany(indexName: "byOye", fields: ["id"])
+  LikesModels: [LikesModel] @hasMany(indexName: "byOye", fields: ["id"])
+  bgcolor: String
+  song: String
+}
+ 

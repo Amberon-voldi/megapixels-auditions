@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "megapixels",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-10-12T14:46:13.859Z"
+}

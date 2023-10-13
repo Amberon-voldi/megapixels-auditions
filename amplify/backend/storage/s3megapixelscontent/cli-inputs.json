@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3megapixelscontent",
+  "bucketName": "megapixels-content",
+  "policyUUID": "d7290aee",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
