@@ -409,34 +409,66 @@ class _AuditionPageState extends State<AuditionPage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 100),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Color.fromARGB(255, 156, 39, 31)),
-                        elevation: MaterialStateProperty.all(0)),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => auditionform()));
-                    },
-                    child: FittedBox(
-                      child: Text(
-                        'Apply For Audition',
-                        style: mystyle(15, Colors.white),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                                (states) => Color.fromARGB(255, 156, 39, 31)),
+                            elevation: MaterialStateProperty.all(0)),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => auditionform()));
+                        },
+                        child: FittedBox(
+                          child: Text(
+                            'Apply For Audition',
+                            style: mystyle(15, Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                                (states) => Color.fromARGB(255, 156, 39, 31)),
+                            elevation: MaterialStateProperty.all(0)),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => auditionform()));
+                        },
+                        child: FittedBox(
+                          child: Text(
+                            'Apply For Form',
+                            style: mystyle(15, Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 50,
               ),
               application(),
+              SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),
